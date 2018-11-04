@@ -6,6 +6,7 @@
 library(survival)
 library(survminer)
 library(muhaz)
+library(ggsci)
 
 katrina <- read.csv("katrina.csv", header = TRUE)
 
@@ -40,8 +41,8 @@ summary(katrina_reason)
 
 # Plot the survival curves for all pumps and the stratified curves (by reason). 
 # Discuss anything interesting that you find.
-ggsurvplot(katrina_fit, data = katrina, conf.int = FALSE, palette = "grey")
-ggsurvplot(katrina_reason, data = katrina, conf.int = FALSE, palette = "grey")
+ggsurvplot(katrina_fit, data = katrina, conf.int = FALSE, palette = "npg")
+ggsurvplot(katrina_reason, data = katrina, conf.int = FALSE, palette = "npg")
 
 # Reason 1 drops steadily throughout, reason 2 and 3 drop significantly betweeen 
 # hours 40-48, and reason 4 drops drastically between hours 23-27
@@ -92,7 +93,7 @@ kphaz.plot(katrina_haz, main = "hazard function")
 # Not sure if it's possible to make hazard plots for each individual reason
 
 ### cumulative hazard ###
-ggsurvplot(katrina_fit, fun = "cumhaz", palette = "grey")
+ggsurvplot(katrina_fit, fun = "cumhaz", palette = "npg")
 
 # The only intesting thing I'm noting from the cumulative hazard plot is that it's steady
 # from hours 27-40. Maybe this was the eye of the storm?
